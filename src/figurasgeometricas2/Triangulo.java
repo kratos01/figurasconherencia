@@ -9,69 +9,63 @@ package figurasgeometricas2;
  * Clase que representa un triangulo con sus operaciones
  * @author julian arias 
  */
-public class Triangulo {
-    
-    /**
-     * Atributo que contiene la cordenada x1 y1
-     */
-    private Punto punto1;
-    
-    /**
-     * Atributo que contiene la cordenada x2 y2
-     */    
-    private Punto punto2;
-
+public class Triangulo extends figuras {   
     /**
      * Atributo que contiene la cordenada x3 y3
      */        
     private Punto punto3;
-    
-    
-    /**
-     * Guarda el perimetro del triangulo
-     */
-    private double perimetro;
-
+  
     /**
      * Constuctor de la clase que inicializa las variables
-     * @param punto1
-     * @param punto2
      * @param punto3 
+     * @param Punto1 
+     * @param Punto2 
+     * @param perimetro
+     * @param area
      */
-    public Triangulo(Punto punto1, Punto punto2, Punto punto3) {
-        this.punto1 = punto1;
-        this.punto2 = punto2;
+    
+    public Triangulo(Punto punto3, Punto Punto1, Punto Punto2, double area, double perimetro) {   
+        super(Punto1, Punto2, area, perimetro);
         this.punto3 = punto3;
     }
-    
+
     /**
      * Metodo que da los resultados del triangulo
      */
     public void darResultados() {
-        if(isTriangulo()) {
+        super.darDatos();
+        if(isTriangulo()) {    
             System.out.println("Lado1: " + darLado1());
             System.out.println("Lado2: " + darLado2());
             System.out.println("Lado3: " + darLado3());
-            System.out.println("Perimetro: " + darPermietro());
-            System.out.println("Area: " + darArea());
+            System.out.println("area: "+ darArea());
+            System.out.println("perimetro: "+ darPerimetro());
+            System.out.println("Tipo Triangulo: " + darTipoTriangulo());
         } else {
             System.out.println("No es un triangulo...");
         }    
     }
     
     /**
-     * Retorna verdadero si es un triangulo Falso contrario
+     * Retorna verdadero cuando  es triangulo
      * @return 
      */
     private boolean isTriangulo() {
-       if((punto1 == punto2) && (punto1 == punto3) && (punto2 == punto3) ){
+       if((Punto1 == Punto2) && (Punto1 == punto3) && (Punto2 == punto3) ){
            System.out.println("no es triangulo...");
-       }else if((punto1.getX() == punto2.getX()) && (punto1.getX() == punto3.getX()) && (punto2.getX() == punto3.getX())){
-            System.out.println("no es un triangulo....");
-       }else if((punto1.getX() == punto2.getX()) && (punto1.getX() == punto3.getX()) && (punto2.getX() == punto3.getX())){
-           System.out.println("no es triangulo....");       
-       }
-           return false;
+       }else 
+            System.out.println("es triangulo...");
+        if(Punto1.getX() == Punto2.getX() && Punto1.getX() == punto3.getX() && Punto2.getX() == punto3.getX()) {
+           System.out.println("no es un triangulo....");
+       }else{
+            System.out.println("es triangulo..");
+        }
+            if((Punto1.getY() == Punto2.getY()) && (Punto1.getY() == punto3.getY()) && (Punto2.getY() == punto3.getY())){
+                System.out.println("no es triangulo..");
+            } else   {
+                System.out.println(" es triangulo....");
+            }
+           return true;
         
     }
     
@@ -79,9 +73,9 @@ public class Triangulo {
      * Retorma longitud de lado AB
      * @return 
      */
-    private double darLado1(){
-        double auxiliarX = Math.pow(punto2.getX() - punto1.getX(), 2);
-        double auxiliarY = Math.pow(punto2.getY() - punto1.getY(), 2);
+    private  double darLado1(){
+        double auxiliarX = Math.pow(Punto2.getX() - Punto1.getX(), 2);
+        double auxiliarY = Math.pow(Punto2.getY() - Punto1.getY(), 2);
         
         double lado = Math.sqrt(auxiliarX +  auxiliarY);
         return lado;
@@ -92,8 +86,8 @@ public class Triangulo {
      * @return 
      */
     private double darLado2(){
-        double auxiliarX = Math.pow(punto3.getX() - punto2.getX(), 2);
-        double auxiliarY = Math.pow(punto3.getY() - punto2.getY(), 2);
+        double auxiliarX = Math.pow(punto3.getX() - Punto2.getX(), 2);
+        double auxiliarY = Math.pow(this.punto3.getY() - Punto2.getY(), 2);
         
         double lado = Math.sqrt(auxiliarX +  auxiliarY);
         return lado;
@@ -104,8 +98,8 @@ public class Triangulo {
      * @return 
      */
     private double darLado3(){
-        double auxiliarX = Math.pow(punto1.getX() - punto3.getX(), 2);
-        double auxiliarY = Math.pow(punto1.getY() - punto3.getY(), 2);
+        double auxiliarX = Math.pow(Punto1.getX() - punto3.getX(), 2);
+        double auxiliarY = Math.pow(Punto1.getY() - punto3.getY(), 2);
         
         double lado = Math.sqrt(auxiliarX +  auxiliarY);
         return lado;
@@ -116,7 +110,7 @@ public class Triangulo {
      * Metodo que retorna el perimetro del triangulo
      * @return Perimetro
      */
-    private double darPermietro() {        
+    private double darPerimetro() {        
         this.perimetro =  darLado1() + darLado2() + darLado3();
         return this.perimetro;
     }
@@ -131,7 +125,7 @@ public class Triangulo {
         double lado2 = semiperimetro - darLado2();
         double lado3 = semiperimetro - darLado3();
         
-        double area =  Math.sqrt((semiperimetro * lado1 * lado2 * lado3));
+        area =  Math.sqrt((semiperimetro * lado1 * lado2 * lado3));
         return area;
     }
     
@@ -139,47 +133,16 @@ public class Triangulo {
      * Metodo que retorna el tipo de triangulo
      * @return Tipo de triangulo
      */
-    /*public String darTipoTriangulo() {
-        if(darLado2() == darLado3() == darLado1() ) {
+    public String darTipoTriangulo() {
+        if((darLado1() == darLado3()) && (darLado1() == darLado2()) && (darLado2() == darLado3())){
             System.out.println("el trangulo es equilatero");
-        }else if()
-            return "";
-        }\*
-    
-
-    
-    /**
-     * Retorna la cordenada x1 y1
-     * @return 
-     */
-    public Punto getPunto1() {
-        return punto1;
+        }else if((darLado1() == darLado2()) && (darLado1() != darLado3()) && (darLado2() != darLado3())){
+            System.out.println("el triangulo es isoseles");
+        }else if((darLado1() != darLado3()) && (darLado1() != darLado2()) && (darLado2() != darLado3())){
+            System.out.println("el triangulo es escaleno");
     }
-
-    /**
-     * Modifica la cordenada x1 y1
-     * @param punto1 
-     */
-    public void setPunto1(Punto punto1) {
-        this.punto1 = punto1;
-    }
-
-    /**
-     * Retorna la cordenada x2 y2
-     * @return 
-     */    
-    public Punto getPunto2() {
-        return punto2;
-    }
-
-    /**
-     * Modifica la cordenada x2 y2
-     * @param punto2 
-     */    
-    public void setPunto2(Punto punto2) {
-        this.punto2 = punto2;
-    }
-
+            return " ";
+        }
     /**
      * Retorna la cordenada x3 y3
      * @return 

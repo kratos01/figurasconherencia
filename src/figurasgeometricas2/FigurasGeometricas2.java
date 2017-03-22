@@ -37,7 +37,7 @@ public class FigurasGeometricas2 {
      */
     private void iniciar() {        
         while(true) {
-            System.out.println("1.Triangulo\n 2.Circulo\n 3.Cuadrado\n 4.Salir");
+            System.out.println(" \n1.Triangulo\n 2.Circulo\n 3.Cuadrado\n 4.Salir");
             byte opcion =  teclado.nextByte();
             if(opcion == 1) {
                 inicicarTriangulo();
@@ -59,23 +59,23 @@ public class FigurasGeometricas2 {
      */
     private void inicicarTriangulo(){
         double x, y;
-        System.out.println("Digite lado x1");
+        System.out.println("Digite punto x1");
         x = teclado.nextDouble();
         System.out.println("Digite lado y1");
         y = teclado.nextDouble();
-        Punto punto1 = new Punto(x, y);
+        Punto Punto1 = new Punto(x, y);
         System.out.println("Digite lado x2");
         x = teclado.nextDouble();
         System.out.println("Digite lado y2");
         y = teclado.nextDouble();
-        Punto punto2 = new Punto(x, y);
+        Punto Punto2 = new Punto(x, y);
         System.out.println("Digite lado x3");
         x = teclado.nextDouble();
         System.out.println("Digite lado y3");
         y = teclado.nextDouble();
         Punto punto3 = new Punto(x, y);
-        Triangulo triangulo = new Triangulo(punto1, punto2, punto3);
-        triangulo.darResultados();        
+        Triangulo triangulo = new Triangulo(Punto1, Punto2, punto3);
+        triangulo.darResultados();
     }
 private void iniciarCirculo(){
      double x, y;
@@ -83,13 +83,13 @@ private void iniciarCirculo(){
         x = teclado.nextDouble();
         System.out.println("Digite lado y1");
         y = teclado.nextDouble();
-        Punto punto1 = new Punto(x, y);
+        Punto Punto1 = new Punto(x, y);
         System.out.println("Digite lado x2");
         x = teclado.nextDouble();
         System.out.println("Digite lado y2");
         y = teclado.nextDouble();
-        Punto punto2 = new Punto(x, y);
-        Circulo circulo = new Circulo(punto1, punto2);
+        Punto Punto2 = new Punto(x, y);
+        Circulo circulo = new Circulo(Punto1, Punto2, area);
         circulo.darResultados();
 }
 private void iniciarCuadrado(){
@@ -114,7 +114,7 @@ private void iniciarCuadrado(){
         System.out.println("Digite lado y4");
         y = teclado.nextDouble();
         Punto punto4 = new Punto(x, y);
-        Cuadradorectangulo cuadrado = new Cuadradorectangulo(punto1, punto2, punto3, punto4);
+        Cuadradorectangulo cuadrado = new Cuadradorectangulo(Punto1, Punto2, punto3, punto4);
         cuadrado.darResultados();        
     }
 }

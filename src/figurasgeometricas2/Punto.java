@@ -9,7 +9,7 @@ package figurasgeometricas2;
  * Clase que representa un punto de cordenada en X y Y
  * @author Julian arias 
  */
-public class Punto {
+public class Punto{
     
     /**
      * Atributo que aloja la cordenada x
@@ -20,17 +20,15 @@ public class Punto {
      * Atributo que aloja la cordenada y
      */    
     private double y;
-
     /**
      * Constructor de la clase que inicializa las variables
      * @param x
      * @param y 
      */
-    public Punto(double x, double y) {
+    public Punto(double x, double y) {    
         this.x = x;
         this.y = y;
     }
-
     /**
      * Retorna el valor de x de la cordenada
      * @return x

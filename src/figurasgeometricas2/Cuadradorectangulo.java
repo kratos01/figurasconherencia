@@ -9,15 +9,8 @@ package figurasgeometricas2;
  *clase que representa un cuadrado con sus operaciones 
  * @author julian arias
  */
-public class Cuadradorectangulo {
-/**
- * atributo de la coordenada x1 y1 
- */
-private Punto punto1;
-/**
- * atributo de la coordenada x2 y2 
- */
-private Punto punto2;
+public class Cuadradorectangulo extends figuras{
+
 /**
  * atributo de la coordenada x3 y3
  */
@@ -26,39 +19,53 @@ private Punto punto3;
  * atributo de la coordenada x4 y4 
  */
 private Punto punto4;
-
-private double perimetro;
 /**
  * contruye el contructor del metodo cuadrdo
- * @param punto1
- * @param punto2
- * @param punto3
- * @param punto4 
+     * @param perimetro 
+     * @param Punto1 
+     * @param punto3 
+     * @param punto4 
+     * @param Punto2 
+     * @param area 
  */
-    public Cuadradorectangulo(Punto punto1, Punto punto2, Punto punto3, Punto punto4) {
-        this.punto1 = punto1;
-        this.punto2 = punto2;
+      public Cuadradorectangulo(Punto punto3, Punto punto4, Punto Punto1, Punto Punto2, double area, double perimetro) {
+        super(Punto1, Punto2, area, perimetro);
         this.punto3 = punto3;
         this.punto4 = punto4;
     }
     /**
      * metodo para imprimir los resultados 
      */
-    public void darResultados(){
-    System.out.println("lado1 "+darLado1());
-    System.out.println(" lado2 "+darLado2());
-    System.out.println(" lado3 "+darLado3());
-    System.out.println(" lado4 "+darLado4());
-        System.out.println("el perimetro es: "+darPerimetro());
+      
+    public void darResultados() {
+         super.darDatos();
+        if(cuadrado()){      
+        System.out.println("lado1 "+darLado1());
+        System.out.println(" lado2 "+darLado2());
+        System.out.println(" lado3 "+darLado3());
+        System.out.println(" lado4 "+darLado4());
         System.out.println("el area es: "+darArea());
+        System.out.println("el perimetro es: "+darPerimetro());
+        }else
+        System.out.println("el perimetro de rectangulo es: "+darPerimetroRectangulo());
     }
+    
+    public boolean cuadrado(){
+        if((darLado1() != darLado2())&& (darLado1() == darLado3()) && (darLado2() == darLado4())){
+            System.out.println("es rectangulo..");
+        }else{
+            System.out.println("es cuadrado..");
+        }
+        return true; 
+    }
+
     /**
      * Retorma longitud de lado AB
      * @return 
      */
     private double darLado1(){
-        double auxiliarX = Math.pow(punto2.getX() - punto1.getX(), 2);
-        double auxiliarY = Math.pow(punto2.getY() - punto1.getY(), 2);
+        double auxiliarX = Math.pow(Punto2.getX() - Punto1.getX(), 2);
+        double auxiliarY = Math.pow(Punto2.getY() - Punto1.getY(), 2);
         
         double lado = Math.sqrt(auxiliarX +  auxiliarY);
         return lado;
@@ -68,8 +75,8 @@ private double perimetro;
      * @return 
      */
     private double darLado2(){
-        double auxiliarX = Math.pow(punto3.getX() - punto2.getX(), 2);
-        double auxiliarY = Math.pow(punto3.getY() - punto2.getY(), 2);
+        double auxiliarX = Math.pow(punto3.getX() - Punto2.getX(), 2);
+        double auxiliarY = Math.pow(punto3.getY() - Punto2.getY(), 2);
         
         double lado = Math.sqrt(auxiliarX +  auxiliarY);
         return lado;
@@ -91,86 +98,63 @@ private double perimetro;
      * @return 
      */
 private double darLado4(){
-        double auxiliarX = Math.pow(punto1.getX() - punto4.getX(), 2);
-        double auxiliarY = Math.pow(punto1.getY() - punto4.getY(), 2);
+        double auxiliarX = Math.pow(Punto1.getX() - punto4.getX(), 2);
+        double auxiliarY = Math.pow(Punto1.getY() - punto4.getY(), 2);
         
         double lado = Math.sqrt(auxiliarX +  auxiliarY);
         return lado;
     }
 /**
- * metodo que retorna el valor del perimetro
+ * retorna el area 
  * @return 
  */
-    private double darPerimetro(){
-         this.perimetro = darLado1() + darLado2() + darLado3() +darLado4();
-         return this.perimetro;    
-    }
-    /**
-     * metod que retorna el valor del area  
-     * @return 
-     */
-    private double darArea(){
-        double areaCuad = darLado1() * darLado1();
-        return areaCuad;
-        
-    }
-    /**
-     * metodo que retorna la coordenada x1 y1 
-     * @return 
-     */
-    public Punto getPunto1() {
-        return punto1;
-    }
+private double darArea(){
+     area=darLado1()*darLado2();
+    return area;
+}
 /**
- * metodo que modifica la coordenada x1 y1
- * @param punto1 
+ * retorna el perimetro de cuadrado
+ * @return 
  */
-    public void setPunto1(Punto punto1) {
-        this.punto1 = punto1;
-    }
-    /**
-     * metodo que retorna la coordenada x2 y2 
-     * @return 
-     */
-    public Punto getPunto2() {
-        return punto2;
-    }
+private double darPerimetro(){
+     perimetro = darLado1() + darLado2() + darLado3() + darLado4(); 
+    return perimetro;
+}
 /**
- * metodo que modifica la coordenada x1 y1
- * @param punto2 
+ * retorna el perimetro del rectangulo
+ * @return 
  */
-    public void setPunto2(Punto punto2) {
-        this.punto2 = punto2;
-    }
-     /**
-     * metodo que retorna la coordenada x3 y3 
-     * @return 
-     */
+private double darPerimetroRectangulo(){
+    area = 2 * darLado1() + 2 * darLado2();
+return area;
+}
+/**
+ * metodo que retorna la varible del punto
+ * @return 
+ */
     public Punto getPunto3() {
         return punto3;
     }
 /**
- * metodo que modifica la coordenada x1 y1
+ * metodo que modifica el punto
  * @param punto3 
  */
     public void setPunto3(Punto punto3) {
         this.punto3 = punto3;
     }
-     /**
-     * metodo que retorna la coordenada x4 y4 
-     * @return 
-     */
+/**
+ * metodo que retorna la varible del punto
+ * @return 
+ */
     public Punto getPunto4() {
         return punto4;
     }
 /**
- * metodo que modifica la coordenada x1 y1
+ * metodo que modifica el punto
  * @param punto4 
  */
     public void setPunto4(Punto punto4) {
         this.punto4 = punto4;
     }
-
-
 
         }
